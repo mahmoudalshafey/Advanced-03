@@ -9,6 +9,7 @@
             Exercise3();
             Exercise4();
             Exercise5();
+            Exercise6();
         }
 
         static void Exercise1()
@@ -160,6 +161,31 @@
                 Console.WriteLine($"Dequeued: {doc}");
             else
                 Console.WriteLine("TryDequeue returned false: the queue is empty (no exception thrown).");
+        }
+
+        static void Exercise6()
+        {
+
+            var history = new Stack<string>();
+            history.Push("google.com");
+            history.Push("github.com");
+            history.Push("stackoverflow.com");
+            history.Push("youtube.com");
+            history.Push("claude.ai");
+
+            Console.WriteLine($"Current page (Peek): {history.Peek()}");
+
+            for (int i = 1; i <= 3; i++)
+                Console.WriteLine($"Back #{i}: leaving {history.Pop()}");
+
+            Console.WriteLine($"Current page now: {history.Peek()}");
+
+            while (history.Count > 0) history.Pop();
+
+            if (history.TryPop(out string? page))
+                Console.WriteLine($"Popped: {page}");
+            else
+                Console.WriteLine("TryPop returned false: the stack is empty (no exception thrown).");
         }
     }
 }
