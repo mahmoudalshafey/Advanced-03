@@ -6,6 +6,7 @@
         {
             Exercise1();
             Exercise2();
+            Exercise3();
         }
 
         static void Exercise1()
@@ -64,6 +65,42 @@
             Console.WriteLine("After removing score 200:");
             foreach (var kv in board)
                 Console.WriteLine($"  {kv.Key} -> {kv.Value}");
+        }
+
+        static void Exercise3()
+        {
+
+            var book = new Dictionary<string, string>
+        {
+            { "Ahmed", "0100-111-1111" },
+            { "Sara",  "0100-222-2222" },
+            { "Ali",   "0100-333-3333" },
+            { "Mona",  "0100-444-4444" }
+        };
+
+            book["Omar"] = "0100-555-5555";
+            book["Sara"] = "0100-999-9999";   
+            Console.WriteLine("Added Omar and updated Sara using [].");
+
+            try
+            {
+                book.Add("Ahmed", "0100-000-0000");
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine($"Add() failed: {ex.Message}");
+            }
+
+            bool added = book.TryAdd("Ahmed", "0100-000-0000");
+            Console.WriteLine($"TryAdd() succeeded? {added}");
+
+            Console.WriteLine($"Contains 'Hassan'? {book.ContainsKey("Hassan")}");
+
+            string phone = book.GetValueOrDefault("Hassan", "Not Found");
+            Console.WriteLine($"Hassan: {phone}");
+
+            Console.WriteLine("Keys:   " + string.Join(", ", book.Keys));
+            Console.WriteLine("Values: " + string.Join(", ", book.Values));
         }
     }
 }
