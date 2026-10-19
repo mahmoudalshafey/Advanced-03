@@ -8,6 +8,7 @@
             Exercise2();
             Exercise3();
             Exercise4();
+            Exercise5();
         }
 
         static void Exercise1()
@@ -135,6 +136,30 @@
 
             var small = new HashSet<int> { 1, 2 };
             Console.WriteLine($"{{1,2}} is subset of Set A? {small.IsSubsetOf(setA)}");
+        }
+
+        static void Exercise5()
+        {
+
+            var queue = new Queue<string>();
+            queue.Enqueue("Report.pdf");
+            queue.Enqueue("Invoice.pdf");
+            queue.Enqueue("Letter.docx");
+            queue.Enqueue("Resume.pdf");
+            queue.Enqueue("Photo.jpg");
+
+            Console.WriteLine("Queue: " + string.Join(", ", queue));
+            Console.WriteLine($"Count: {queue.Count}");
+
+            Console.WriteLine($"Next to print (Peek): {queue.Peek()}");
+
+            while (queue.Count > 0)
+                Console.WriteLine($"Printing: {queue.Dequeue()}");
+
+            if (queue.TryDequeue(out string? doc))
+                Console.WriteLine($"Dequeued: {doc}");
+            else
+                Console.WriteLine("TryDequeue returned false: the queue is empty (no exception thrown).");
         }
     }
 }
