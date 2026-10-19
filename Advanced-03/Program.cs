@@ -7,6 +7,7 @@
             Exercise1();
             Exercise2();
             Exercise3();
+            Exercise4();
         }
 
         static void Exercise1()
@@ -101,6 +102,39 @@
 
             Console.WriteLine("Keys:   " + string.Join(", ", book.Keys));
             Console.WriteLine("Values: " + string.Join(", ", book.Values));
+        }
+
+        static void Exercise4()
+        {
+
+            var emails = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            emails.Add("ahmed@test.com");
+            emails.Add("AHMED@test.com");  
+            emails.Add("sara@test.com");
+            emails.Add("Sara@Test.Com");    
+            Console.WriteLine($"Count: {emails.Count}");
+            Console.WriteLine("Why? The comparer is OrdinalIgnoreCase, so \"ahmed@test.com\" and");
+            Console.WriteLine("\"AHMED@test.com\" are treated as the same value; a HashSet never");
+            Console.WriteLine("stores duplicates, so only 2 emails remain.");
+            Console.WriteLine("Stored: " + string.Join(", ", emails));
+
+            var setA = new HashSet<int> { 1, 2, 3, 4, 5 };
+            var setB = new HashSet<int> { 4, 5, 6, 7, 8 };
+
+            var union = new HashSet<int>(setA);
+            union.UnionWith(setB);
+            Console.WriteLine("UnionWith:     " + string.Join(", ", union));
+
+            var intersect = new HashSet<int>(setA);
+            intersect.IntersectWith(setB);
+            Console.WriteLine("IntersectWith: " + string.Join(", ", intersect));
+
+            var except = new HashSet<int>(setA);
+            except.ExceptWith(setB);
+            Console.WriteLine("ExceptWith:    " + string.Join(", ", except));
+
+            var small = new HashSet<int> { 1, 2 };
+            Console.WriteLine($"{{1,2}} is subset of Set A? {small.IsSubsetOf(setA)}");
         }
     }
 }
